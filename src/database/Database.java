@@ -13,27 +13,27 @@ public class Database {
     public  static Connection con;
 
     public void setDatabase(String databaseURL){
-        this.databaseURL = databaseURL;
+        databaseURL = databaseURL;
     }
 
     private String getDatabaseURL(){
-        return this.databaseURL;
+        return databaseURL;
     }
 
     public void setUser(String user){
-        this.user = user;
+        user = user;
     }
 
     public String getUser(){
-        return this.user;
+        return user;
     }
 
     public void setPassword(String password){
-        this.password = password;
+        password = password;
     }
 
     public String getPassword(){
-        return this.password;
+        return password;
     }
 
     private static void init() throws IOException {
@@ -74,7 +74,6 @@ public class Database {
         } catch (SQLException ex){
             System.out.println("An error has occured on Table Creation");
             ex.printStackTrace();
-            return;
         }
     }
 

@@ -1,22 +1,19 @@
 package com.company;
 
 import database.Database;
-import user.UserTable;
-import userMenu.UserMenu;
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.Properties;
+import database.TicketTable;
+import menu.ticketMenu.TicketMenu;
+import menu.userMenu.UserMenu;
 import java.util.Scanner;
 
 public class Main {
 
-    private static Scanner input = new Scanner(System.in);
+    private static final Scanner  input = new Scanner(System.in);
 
     public static void main(String[] args) throws Exception{
 
         Database.connect();
-         displayHomeMenu();
+        displayHomeMenu();
     }
 
     public static void displayHomeMenu() throws Exception {
@@ -26,9 +23,9 @@ public class Main {
 
         String choice = input.next();
 
-        switch (choice){
-            case "1":
-                UserMenu.userMenuHome();
+        switch (choice) {
+            case "1" -> UserMenu.userMenuHome();
+            case "2" -> TicketMenu.ticketMenuHome();
         }
     }
 }
