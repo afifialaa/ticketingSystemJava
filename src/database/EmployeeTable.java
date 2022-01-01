@@ -8,6 +8,11 @@ import java.sql.ResultSet;
 
 public class EmployeeTable {
 
+    /**
+     * Creates an employee
+     * @param user
+     * @throws Exception
+     */
     public static void create(Employee user) throws Exception{
         // Insert statement
         String query = "INSERT INTO user (firstName, lastName, email, userName, ipAddress, branch)"
@@ -25,6 +30,11 @@ public class EmployeeTable {
         System.out.println("User was created");
     }
 
+    /**
+     * Deletes an employee by username
+     * @param userName
+     * @throws Exception
+     */
     public static void delete(String userName) throws Exception{
         String query = "DELETE FROM user WHERE userName = ?;";
         PreparedStatement preparedStmt = Database.con.prepareStatement(query);
@@ -33,6 +43,11 @@ public class EmployeeTable {
         System.out.println("User was deleted");
     }
 
+    /**
+     * Deletes an employee by email
+     * @param email
+     * @throws Exception
+     */
     public static void deleteByEmail(String email) throws Exception{
         String query = "DELETE FROM user WHERE email = ?;";
         PreparedStatement preparedStmt = Database.con.prepareStatement(query);
@@ -41,6 +56,12 @@ public class EmployeeTable {
         System.out.println("User was deleted");
     }
 
+    /**
+     * Reads an employee by username
+     * @param userName
+     * @return
+     * @throws Exception
+     */
     public static Employee read(String userName) throws Exception{
         String query = "SELECT * FROM user WHERE username = ?";
         PreparedStatement preparedStmt = Database.con.prepareStatement(query);
@@ -60,10 +81,20 @@ public class EmployeeTable {
         return employee;
     }
 
+    /**
+     * Updates an employee
+     * @throws Exception
+     */
     public static void update() throws Exception{
 
     }
 
+    /**
+     * Reads an employee by email
+     * @param email
+     * @return
+     * @throws Exception
+     */
     public static User readByEmail(String email) throws Exception{
         String query = "SELECT * FROM user WHERE email = ?";
         PreparedStatement preparedStmt = Database.con.prepareStatement(query);

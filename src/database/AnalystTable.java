@@ -8,6 +8,11 @@ import java.sql.ResultSet;
 
 public class AnalystTable {
 
+    /**
+     * Inserts an analyst into the database
+     * @param user
+     * @throws Exception
+     */
     public static void create(Analyst user) throws Exception{
         // Insert statement
         String query = "INSERT INTO user (firstName, lastName, email, userName, analyst)"
@@ -24,6 +29,12 @@ public class AnalystTable {
         System.out.println("User was created");
     }
 
+    /**
+     * Reads an analyst from the database
+     * @param userName
+     * @return an analyst
+     * @throws Exception
+     */
     public static Analyst read(String userName) throws Exception{
         String query = "SELECT * FROM user WHERE username = ?";
         PreparedStatement preparedStmt = Database.con.prepareStatement(query);
@@ -42,10 +53,19 @@ public class AnalystTable {
         return analyst;
     }
 
+    /**
+     * Updates an analyst
+     * @throws Exception
+     */
     public static void update() throws Exception{
 
     }
 
+    /**
+     * Deletes an analyst by username
+     * @param userName
+     * @throws Exception
+     */
     public static void delete(String userName) throws Exception{
         String query = "DELETE FROM user WHERE userName = ?;";
         PreparedStatement preparedStmt = Database.con.prepareStatement(query);
@@ -54,6 +74,11 @@ public class AnalystTable {
         System.out.println("User was deleted");
     }
 
+    /**
+     * Deletes an analyst by email
+     * @param email
+     * @throws Exception
+     */
     public static void deleteByEmail(String email) throws Exception{
         String query = "DELETE FROM user WHERE email = ?;";
         PreparedStatement preparedStmt = Database.con.prepareStatement(query);
@@ -62,7 +87,13 @@ public class AnalystTable {
         System.out.println("User was deleted");
     }
 
-    public static User readByEmail(String email) throws Exception{
+    /**
+     * Reads an analyst by email
+     * @param email
+     * @return an analyst
+     * @throws Exception
+     */
+    public static Analyst readByEmail(String email) throws Exception{
         String query = "SELECT * FROM user WHERE email = ?";
         PreparedStatement preparedStmt = Database.con.prepareStatement(query);
         preparedStmt.setString(1, email);

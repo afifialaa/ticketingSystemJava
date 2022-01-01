@@ -1,7 +1,5 @@
 package menu;
 
-import database.AnalystTable;
-import user.IUser;
 import user.User;
 import user.analyst.Analyst;
 import user.employee.Employee;
@@ -12,6 +10,11 @@ public class UserMenu {
 
     private static final Scanner input = new Scanner(System.in);
 
+
+    /**
+     * Displays user home menu
+     * @throws Exception
+     */
     public static void userMenuHome() throws Exception {
         System.out.println("1) Create user");
         System.out.println("2) Read user");
@@ -26,6 +29,10 @@ public class UserMenu {
         }
     }
 
+    /**
+     * Displays create user menu
+     * @throws Exception
+     */
     public static void createMenu() throws Exception {
         System.out.print("First name: ");
         String firstName = input.next();
@@ -53,6 +60,10 @@ public class UserMenu {
         employee.create();
     }
 
+    /**
+     * Display user read menu
+     * @throws Exception
+     */
     public static void readMenu() throws Exception {
         User user = new User();
         System.out.println("Search by 1) username 2) email");
@@ -75,9 +86,16 @@ public class UserMenu {
         }
     }
 
+    /**
+     * Display user update menu
+     */
     public static void updateMenu() {
     }
 
+    /**
+     * Displays user delete menu
+     * @throws Exception
+     */
     public static void deleteMenu() throws Exception{
         User user = new User();
         System.out.println("Delete by: 1) username 2) email");

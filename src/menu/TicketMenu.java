@@ -23,6 +23,10 @@ public class TicketMenu {
         }
     }
 
+    /**
+     * Display create ticket menu
+     * @throws Exception
+     */
     public static void createMenu() throws Exception {
         System.out.println("Username: ");
         String empUserName = input.next();
@@ -36,6 +40,10 @@ public class TicketMenu {
         ticket.create();
     }
 
+    /**
+     * Displays delete ticket menu
+     * @throws Exception
+     */
     public static void deleteMenu() throws Exception {
         Ticket ticket = new Ticket();
         System.out.println("Enter ticket number: ");
@@ -44,10 +52,16 @@ public class TicketMenu {
         ticket.delete();
     }
 
+    /**
+     * Displays update ticket menu
+     */
     public static void updateMenu(){
 
     }
 
+    /**
+     * Displays read ticket menu
+     */
     public static void readMenu(){
 
     }

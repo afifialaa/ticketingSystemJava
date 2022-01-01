@@ -9,9 +9,13 @@ import java.sql.ResultSet;
 
 public class UserTable{
 
-    // Creates user table
+    /**
+     * Creates user table
+     */
     public static void createTable(){
-        // User schema
+        /**
+         * User table schema
+         */
          String userSchema = "CREATE TABLE user ("
                  + "id INTEGER KEY NOT NULL AUTO_INCREMENT,"
                 + "firstName VARCHAR(32),"
@@ -26,7 +30,11 @@ public class UserTable{
         Database.createTable(userSchema);
     }
 
-    // Inserts a user
+    /**
+     * Creates a new user
+     * @param user
+     * @throws Exception
+     */
     public static void createUser(IUser user) throws Exception{
         // Insert statement
         String query = "INSERT INTO user (firstName, lastName, email, userName, ipAddress, branch, analyst)"
@@ -42,6 +50,11 @@ public class UserTable{
         System.out.println("User was created");
     }
 
+    /**
+     * Delete a user by username
+     * @param userName
+     * @throws Exception
+     */
     public static void deleteByUserName(String userName) throws Exception{
         String query = "DELETE FROM user WHERE userName = ?;";
         PreparedStatement preparedStmt = Database.con.prepareStatement(query);
@@ -50,6 +63,11 @@ public class UserTable{
         System.out.println("user was deleted");
     }
 
+    /**
+     * Deletes a user by email
+     * @param email
+     * @throws Exception
+     */
     public static void deleteByEmail(String email) throws Exception{
         String query = "DELETE FROM user WHERE email = ?;";
         PreparedStatement preparedStmt = Database.con.prepareStatement(query);
