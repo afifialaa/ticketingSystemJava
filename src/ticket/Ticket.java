@@ -4,12 +4,10 @@ import database.TicketTable;
 
 public class Ticket {
     private int id;
-    private String number;
     private String employeeUserName;
     private String analystUserName;
     private String ipAddress;
     private String details;
-    private int priority;
     private boolean resolved;
 
     public Ticket(){
@@ -20,13 +18,6 @@ public class Ticket {
         this.employeeUserName = employeeUserName;
         this.ipAddress = ipAddress;
         this.details = details;
-    }
-
-    public Ticket(String number, String employeeUserName, String analystUserName, String ipAddress){
-        this.number = number;
-        this.employeeUserName = employeeUserName;
-        this.analystUserName = analystUserName;
-        this.ipAddress = ipAddress;
     }
 
     public Ticket(String employeeUserName, String ipAddress){
@@ -58,14 +49,6 @@ public class Ticket {
         this.ipAddress = ipAddress;
     }
 
-    public String getNumber() {
-        return  number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
     public String getEmployeeUserName() {
         return employeeUserName;
     }
@@ -80,14 +63,6 @@ public class Ticket {
 
     public void setAnalystUserName(String analystUserName) {
         this.analystUserName = analystUserName;
-    }
-
-    public int getPriority() {
-        return priority;
-    }
-
-    public void setPriority(int priority) {
-        this.priority = priority;
     }
 
     public boolean isResolved() {

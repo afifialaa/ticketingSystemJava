@@ -1,4 +1,4 @@
-package menu.ticketMenu;
+package menu;
 
 import ticket.Ticket;
 

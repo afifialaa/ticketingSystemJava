@@ -1,6 +1,11 @@
-package menu.userMenu;
+package menu;
 
+import database.AnalystTable;
+import user.IUser;
 import user.User;
+import user.analyst.Analyst;
+import user.employee.Employee;
+
 import java.util.Scanner;
 
 public class UserMenu {
@@ -19,6 +24,33 @@ public class UserMenu {
             case "2" -> readMenu();
             case "4" -> deleteMenu();
         }
+    }
+
+    public static void createMenu() throws Exception {
+        System.out.print("First name: ");
+        String firstName = input.next();
+        System.out.print("Last name: ");
+        String lastName = input.next();
+        System.out.print("Email: ");
+        String email = input.next();
+        System.out.print("Username: ");
+        String userName = input.next();
+        System.out.print("Analyst: ");
+        boolean isAnalyst = input.nextBoolean();
+
+        if(isAnalyst){
+            Analyst analyst = new Analyst(firstName, lastName, email, userName);
+            analyst.create();
+            return;
+        }
+
+        System.out.print("Branch: ");
+        String branch = input.next();
+        System.out.print("Ip address: ");
+        String ipAddress = input.next();
+
+        Employee employee = new Employee(firstName, lastName, email, userName, ipAddress, branch);
+        employee.create();
     }
 
     public static void readMenu() throws Exception {
@@ -43,6 +75,9 @@ public class UserMenu {
         }
     }
 
+    public static void updateMenu() {
+    }
+
     public static void deleteMenu() throws Exception{
         User user = new User();
         System.out.println("Delete by: 1) username 2) email");
@@ -61,24 +96,5 @@ public class UserMenu {
                 user.deleteByEmail();
             }
         }
-    }
-
-    public static void createMenu() throws Exception {
-        System.out.print("First name: ");
-        String firstName = input.next();
-        System.out.print("Last name: ");
-        String lastName = input.next();
-        System.out.print("Email: ");
-        String email = input.next();
-        System.out.print("ID ");
-        String id = input.next();
-        System.out.print("Username: ");
-        String userName = input.next();
-
-        User user = new User(firstName, lastName, email, id, userName);
-        user.createUser();
-    }
-
-    public static void updateMenu() {
     }
 }

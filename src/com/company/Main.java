@@ -1,9 +1,9 @@
 package com.company;
 
 import database.Database;
-import database.TicketTable;
-import menu.ticketMenu.TicketMenu;
-import menu.userMenu.UserMenu;
+import menu.TicketMenu;
+import menu.UserMenu;
+
 import java.util.Scanner;
 
 public class Main {
@@ -13,6 +13,7 @@ public class Main {
     public static void main(String[] args) throws Exception{
 
         Database.connect();
+        // UserTable.createTable();
         displayHomeMenu();
     }
 

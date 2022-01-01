@@ -1,6 +1,7 @@
 package database;
 
 import database.Database;
+import user.IUser;
 import user.User;
 
 import java.sql.PreparedStatement;
@@ -17,18 +18,19 @@ public class UserTable{
                 + "lastName VARCHAR(32),"
                 + "email VARCHAR(32),"
                 + "userName varchar(8),"
+                 + "ipAddress varchar(32),"
+                 + "branch varchar(32),"
                  + "analyst boolean DEFAULT false"
                 + ");";
 
         Database.createTable(userSchema);
     }
 
-
     // Inserts a user
-    public static void createUser(User user) throws Exception{
+    public static void createUser(IUser user) throws Exception{
         // Insert statement
-        String query = "INSERT INTO user (firstName, lastName, email, userName)"
-                + " VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO user (firstName, lastName, email, userName, ipAddress, branch, analyst)"
+                + " VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         /* Create the mysql insert prepared statement */
         PreparedStatement preparedStmt = Database.con.prepareStatement(query);

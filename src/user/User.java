@@ -2,21 +2,20 @@ package user;
 
 import database.UserTable;
 
-public class User {
+public class User implements IUser{
+    protected int id;
     protected String firstName;
     protected String lastName;
     protected String email;
-    protected String userId;
     protected String userName;
 
     public User(){
     }
 
-    public User(String firstName, String lastName, String email, String userId, String userName){
+    public User(String firstName, String lastName, String email, String userName){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.userId = userId;
         this.userName = userName;
     }
 
@@ -24,7 +23,7 @@ public class User {
         this.userName = userName;
     }
 
-    public void createUser() throws Exception {
+    public void create() throws Exception {
         UserTable.createUser(this);
     }
 
@@ -50,14 +49,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 
     public String getUserName() {
