@@ -2,14 +2,28 @@ package user;
 
 import database.UserTable;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.Base64;
+
 public class User implements IUser{
     protected int id;
     protected String firstName;
     protected String lastName;
     protected String email;
     protected String userName;
+    protected String password;
 
     public User(){
+    }
+
+    public User(String userName, String password){
+        this.userName = userName;
+        this.password = password;
     }
 
     public User(String firstName, String lastName, String email, String userName){
@@ -78,5 +92,55 @@ public class User implements IUser{
         System.out.println("Full name: " + this.firstName + " " + this.lastName);
         System.out.println("Email: " + this.email);
         System.out.println("Username: " + this.userName);
+    }
+
+    public void setPassword(String password) {
+        this.password = hashPassword(password);
+    }
+
+    public String getPassword(){
+        return password;
+    }
+
+    /**
+     * Hashes password
+     * @return
+     */
+    protected String hashPassword(String password){
+        try{
+            byte[] salt = new byte[16];
+
+            MessageDigest md = MessageDigest.getInstance("SHA-512");
+            md.update(salt);
+
+            byte[] hashedPassword = md.digest(password.getBytes(StandardCharsets.UTF_8));
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hashedPassword) {
+                sb.append(Integer.toString((b & 0xff) + 0x100, 16).substring(1));
+            }
+
+            // Get complete hashed password in hex format
+            return sb.toString();
+        } catch (NoSuchAlgorithmException ex) {
+            ex.printStackTrace();
+            System.out.println("No such hashing algorithm");
+        }
+
+        return "";
+    }
+
+    /**
+     * Updated user password
+     * @return boolean
+     */
+    public boolean updatePassword(){
+        setPassword(password);
+        return UserTable.updatePassword(this);
+    }
+
+    public boolean login() throws SQLException {
+        // Hash password to be compared to stored password
+        setPassword(this.password);
+        return UserTable.login(this);
     }
 }

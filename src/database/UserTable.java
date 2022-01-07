@@ -1,11 +1,11 @@
 package database;
 
-import database.Database;
 import user.IUser;
 import user.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UserTable{
 
@@ -22,6 +22,7 @@ public class UserTable{
                 + "lastName VARCHAR(32),"
                 + "email VARCHAR(32),"
                 + "userName varchar(8),"
+                 + "password varchar(256),"
                  + "ipAddress varchar(32),"
                  + "branch varchar(32),"
                  + "analyst boolean DEFAULT false"
@@ -107,5 +108,48 @@ public class UserTable{
             break;
         }
         return user;
+    }
+
+    /**
+     * Logs user in
+     * @param user
+     * @return
+     */
+    public static boolean login(User user) {
+        System.out.println("password: " + user.getPassword());
+        System.out.println("username: " + user.getUserName());
+        try{
+            String query = "select * from user where userName = ? and password = ?";
+            PreparedStatement preparedStmt = Database.con.prepareStatement(query);
+            preparedStmt.setString(1, user.getUserName());
+            preparedStmt.setString(2, user.getPassword());
+
+            ResultSet res = preparedStmt.executeQuery();
+            if(res.next()){
+                return true;
+            }else{
+                return false;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Invalid sql statement");
+            ex.printStackTrace();
+            System.exit(1);
+        }
+        return true;
+    }
+
+    public static boolean updatePassword(User user){
+        try{
+            String query = "update user " + "set password = ? where userName = ?";
+            PreparedStatement preparedStmt = Database.con.prepareStatement(query);
+            preparedStmt.setString(1, user.getPassword());
+            preparedStmt.setString(2, user.getUserName());
+            preparedStmt.executeUpdate();
+            return true;
+        }catch(SQLException ex){
+            System.out.println("Invalid sql statement");
+            ex.printStackTrace();
+        }
+        return true;
     }
 }
